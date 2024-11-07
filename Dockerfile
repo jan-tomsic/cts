@@ -1,4 +1,4 @@
-FROM python:3.11-slim AS builder
+FROM python:3-slim AS builder
 
 WORKDIR /app
 
@@ -15,7 +15,7 @@ COPY --from=builder /app /app
 ENV ENVIRONMENT="production"
 ENV PYTHONUNBUFFERED=1
 ENV PORT="8080"
-ENV PYTHONPATH=/app/venv/lib/python3.11/site-packages
+ENV PYTHONPATH=/app/venv/lib/python3/site-packages
 ENV PATH=/app/venv/bin/:$PATH
 
 CMD [ "wsgi.py" ]
