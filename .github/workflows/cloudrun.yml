@@ -29,7 +29,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@v5
         with:
-          images: "gcr.io/${{ secrets.GCP_PROJECT_ID }}/cts"
+          images: "eu.gcr.io/${{ secrets.GCP_PROJECT_ID }}/cts"
           tags: |
             type=ref,event=branch
             type=ref,event=tag
@@ -45,7 +45,7 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
-          cache-from: "type=registry,ref=gcr.io/${{ secrets.GCP_PROJECT_ID }}/cts"
+          cache-from: "type=registry,ref=eu.gcr.io/${{ secrets.GCP_PROJECT_ID }}/cts"
           cache-to: type=inline
 
       - name: Deploy to Cloud Run
@@ -53,7 +53,7 @@ jobs:
         uses: google-github-actions/deploy-cloudrun@v2
         with:
           service: cts
-          image: gcr.io/${{ secrets.GCP_PROJECT_ID }}/cts
+          image: eu.gcr.io/${{ secrets.GCP_PROJECT_ID }}/cts
           region: europe-west3
           flags: "--allow-unauthenticated"
 
