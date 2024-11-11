@@ -38,10 +38,16 @@ docker run -p 8080:8080 -e PORT=8080 cts
 ## GitHub Actions Workflow
 The workflow (cloudrun.yml) will trigger on push to main branch, performing the following steps:
 
-1. Checkout the code.
+1. Checkout the code
 2. Log in to Google Cloud and setup gcloud CLI
 3. Build the Docker image, tag it, and push it to gcr.io
 4. Deploy or Update Cloud Run with the latest image
+
+The workflow (docker.yml) will trigger on every push, performing the following steps:
+
+1. Checkout the code
+2. Login to GHCR
+3. Build the Docker image, tag it and push it to ghcr.io
 
 ## Requirements
 
