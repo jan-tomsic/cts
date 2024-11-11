@@ -6,3 +6,7 @@ cts = Flask(__name__)
 def ping():
     return 'OK'
 
+@cts.route('/foo')
+def foo():
+    return 'bar'
+

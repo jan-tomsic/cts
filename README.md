@@ -8,7 +8,7 @@ This repository contains a simple Dockerized Flask application designed to respo
 - **wsgi.py**: Uses Waitress to serve the Flask app, handling configuration for host and port.
 - **requirements.txt**: Lists the Python dependencies (Flask and Waitress).
 - **Dockerfile**: Defines the Docker image, setting up a Python environment, installing dependencies, and starting the app with Waitress.
-- **.github/workflows/docker.yml**: GitHub Actions workflow that builds and pushes the Docker image to the GitHub Container Registry.
+- **.github/workflows/cloudrun.yml**: GitHub Actions workflow that builds and pushes the Docker image to the GCR and deploys or updates Google Cloud Run.
 
 ## Getting Started
 
@@ -24,8 +24,10 @@ This repository contains a simple Dockerized Flask application designed to respo
     curl http://localhost:8080/ping
 
 ## GitHub Actions Workflow
-The workflow (docker.yml) will trigger on any push, performing the following steps:
+The workflow (cloudrun.yml) will trigger on push to main branch, performing the following steps:
 
 1. Checkout the code.
-2. Log in to GitHub Container Registry.
-3. Build the Docker image, tag it, and push it to ghcr.io.
+2. Log in to Google Cloud and setup gcloud CLI
+3. Build the Docker image, tag it, and push it to gcr.io
+4. Deploy or Update Cloud Run with the latest image
+
